@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -5,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        ...defaultTheme.screens,
+      },
       backgroundImage: {
         'cover-pic':
           "linear-gradient(to top, rgba(25,25,35, 1), rgba(30,30,40, 0.9)), url('https://peakvisor.com/img/news/Turkey-Mount-Ararat.jpg')",

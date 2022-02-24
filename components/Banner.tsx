@@ -1,4 +1,6 @@
 import React from 'react'
+
+// @ts-ignore
 import TypeOut from 'react-typeout'
 
 function Banner() {
@@ -8,12 +10,12 @@ function Banner() {
     <div className="h-96 w-full bg-cover-pic py-14 px-5 lg:py-11">
       <div className="h-96 w-full bg-cover-pic-over">
         <div
-          className="flex flex-grow flex-col items-center 
+          className="z-0 flex flex-grow flex-col items-center
             justify-center lg:mx-14 lg:place-items-start lg:justify-start"
         >
-          <div className="mt-8 text-5xl font-black">
+          <div className="mt-8 text-center text-5xl font-black">
             Discover my amazing
-            <div className="text-center lg:text-left">Art Space</div>
+            <div className="text-center lg:text-left">Art Space!</div>
           </div>
           <div className="mt-5 mb-10 flex flex-row font-mono text-lg">
             <div className="mx-2 box-border text-yellow-400">

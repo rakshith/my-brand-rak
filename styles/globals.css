@@ -7,3 +7,15 @@
     @apply bg-[#191923] text-white;
   }
 }
+
+.sidebar-container {
+  @apply bg-[#20202A] text-[#8C8C8E];
+}
+
+.brand-text-style {
+  @apply cursor-pointer text-sm font-semibold  hover:text-white;
+}
+
+.brand-button {
+  @apply h-6 w-6 cursor-pointer text-[#8C8C8E] hover:text-white;
+}

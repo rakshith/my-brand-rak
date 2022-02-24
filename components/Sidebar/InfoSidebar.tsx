@@ -1,9 +1,13 @@
 import React from 'react'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 
-function InfoSidebar() {
+interface InfoSidebarProps {
+  screen: string
+}
+
+function InfoSidebar({ screen }: InfoSidebarProps) {
   return (
-    <div className="mt-5 flex w-60 flex-col">
+    <div className={`mt-5 hidden w-60 flex-col lg:flex`}>
       <div className="flex flex-col items-center justify-center">
         <img
           className="flex h-[100px] w-[100px]  rounded-full"
