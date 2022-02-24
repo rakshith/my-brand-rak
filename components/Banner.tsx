@@ -33,7 +33,7 @@ function Banner() {
               <span className="text-white">{'/>'}</span>
             </div>
           </div>
-          <div className="bg-yellow-400 p-3 px-10 text-center text-xs font-semibold text-black">
+          <div className="cursor-pointer bg-yellow-400 p-3 px-10 text-center text-xs font-semibold text-black">
             EXPLORE NOW
           </div>
         </div>
