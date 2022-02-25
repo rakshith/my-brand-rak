@@ -40,7 +40,7 @@ function Sidebar({ direction }: SidebarProps) {
   console.log('match', screen)
 
   return (
-    <div className=" h-screen bg-[#20202A]">
+    <div className=" sticky top-0 flex h-screen bg-[#20202A]">
       {direction === 'right' ? (
         <InfoSidebar screen={screen} />
       ) : (
