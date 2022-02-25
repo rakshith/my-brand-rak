@@ -1,4 +1,5 @@
 import React from 'react'
+import Rating from './Rating'
 
 export interface CardProps {
   avatar?: string
@@ -6,10 +7,17 @@ export interface CardProps {
   subtitle?: string
   content: string
   btnLink?: string
-  ratings?: string
+  ratings?: number
 }
 
-function Card({ title, content, btnLink, subtitle, avatar }: CardProps) {
+function Card({
+  title,
+  content,
+  btnLink,
+  subtitle,
+  avatar,
+  ratings,
+}: CardProps) {
   return (
     <div className="relative overflow-visible">
       <div
@@ -40,6 +48,9 @@ function Card({ title, content, btnLink, subtitle, avatar }: CardProps) {
             text-xs font-semibold text-brand-text-yellow`}
           >
             ORDER NOW {'>'}
+          </div>
+          <div className="mt-5">
+            <Rating value={ratings} />
           </div>
         </div>
       </div>

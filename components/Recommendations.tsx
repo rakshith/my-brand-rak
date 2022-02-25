@@ -7,10 +7,11 @@ const recommendations = [
     subtitle: 'subtitle1',
     description: 'Descriptions',
     avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
+    ratings: 5,
   },
 
   {
-    title: 'Recommendations 1',
+    title: 'Recommendations 2',
     subtitle: 'subtitle2',
     description: 'Descriptions',
     avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
@@ -36,6 +37,7 @@ function Recommendations() {
               subtitle={item.subtitle}
               content={item.description}
               avatar={item.avatar}
+              ratings={item.ratings}
             />
           </>
         ))}
