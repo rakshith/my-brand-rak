@@ -23,16 +23,6 @@ const myServices = [
     pathTo: 'https://google.co.in',
   },
   {
-    name: 'Example 5',
-    description: 'Description 5',
-    pathTo: 'https://google.co.in',
-  },
-  {
-    name: 'Example 6',
-    description: 'Description 6',
-    pathTo: 'https://google.co.in',
-  },
-  {
     name: 'Example 7',
     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
     quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
@@ -48,23 +38,26 @@ const myServices = [
 
 function MyServices() {
   return (
-    <div
-      className="
+    <>
+      <h1>My Services</h1>
+      <div
+        className="
         grid
         grid-cols-2
         gap-14
         lg:grid-cols-3"
-    >
-      {myServices.map((item) => (
-        <>
-          <Card
-            title={item.name}
-            content={item.description}
-            btnLink={item.pathTo}
-          />
-        </>
-      ))}
-    </div>
+      >
+        {myServices.map((item) => (
+          <>
+            <Card
+              title={item.name}
+              content={item.description}
+              btnLink={item.pathTo}
+            />
+          </>
+        ))}
+      </div>
+    </>
   )
 }
 
