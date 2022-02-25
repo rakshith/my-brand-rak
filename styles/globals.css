@@ -8,6 +8,15 @@
   }
 }
 
+@layer components {
+  .hr {
+    @apply relative h-[1.5em] border-0 text-center leading-[1em] opacity-50 outline-0;
+  }
+  .hr::before {
+    @apply absolute left-0 top-1/2 h-[1px] w-full bg-gradient-to-r from-transparent via-[#8C8C8E] to-transparent content-[''];
+  }
+}
+
 .sidebar-container {
   @apply bg-[#20202A] text-[#8C8C8E];
 }
@@ -18,4 +27,8 @@
 
 .brand-button {
   @apply h-6 w-6 cursor-pointer text-[#8C8C8E] hover:text-white;
+}
+
+.brand-text-gray {
+  @apply text-[#8C8C8E];
 }

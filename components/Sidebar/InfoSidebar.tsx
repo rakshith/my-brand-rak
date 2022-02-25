@@ -1,5 +1,9 @@
 import React from 'react'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
+import Languages from '../Languages'
+import ResidenceDetail from '../ResidenceDetail'
+import SkillsDetail from '../SkillsDetail'
+import UserDetail from '../UserDetail'
 
 interface InfoSidebarProps {
   screen: string
@@ -7,20 +11,14 @@ interface InfoSidebarProps {
 
 function InfoSidebar({ screen }: InfoSidebarProps) {
   return (
-    <div className={`mt-5 hidden w-60 flex-col lg:flex`}>
-      <div className="flex flex-col items-center justify-center">
-        <img
-          className="flex h-[100px] w-[100px]  rounded-full"
-          src="https://res.cloudinary.com/daily-now/image/upload/f_auto/v1645619179/avatars/YVgRVEdJHHNrRxSJNuLek"
-          alt=""
-        />
-        <div className="mt-5 font-mono text-sm font-semibold">
-          Rakshith Raj S
-        </div>
-        <div className="text-xs text-[#8C8C8E]">
-          <div className="text-[#8C8C8E]">Font end engineer</div>
-          <div>UI/UX Professional</div>
-        </div>
+    <div className={`hidden w-72 flex-col lg:flex`}>
+      <UserDetail />
+      <div className="px-10 py-5">
+        <ResidenceDetail />
+        <hr className="hr" />
+        <Languages />
+        <hr className="hr" />
+        <SkillsDetail />
       </div>
     </div>
   )
