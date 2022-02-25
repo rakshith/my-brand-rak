@@ -24,6 +24,7 @@ function Sidebar({ direction }: SidebarProps) {
         case 'md':
         case 'sm':
         case 'lg':
+        case '2xl':
           setScreen(match)
           break
       }
