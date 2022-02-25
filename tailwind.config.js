@@ -1,11 +1,18 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-
+const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    colors: {
+      ...colors,
+      'brand-gray': '#2C2C38',
+      'brand-dark-gray': '#1E1E28',
+      'brand-text-yellow': '#FBCC13',
+      'brand-text-gray': '#8C8C8E',
+    },
     extend: {
       screens: {
         ...defaultTheme.screens,
