@@ -26,8 +26,9 @@ function Recommendations() {
         className="
         mt-5
         grid
-        grid-cols-2
+        grid-cols-1
         gap-14
+        md:grid-cols-2
         lg:grid-cols-3"
       >
         {recommendations.map((item) => (
@@ -42,6 +43,13 @@ function Recommendations() {
           </>
         ))}
       </div>
+      {/* <Card
+        title={recommendations[0].title}
+        subtitle={recommendations[0].subtitle}
+        content={recommendations[0].description}
+        avatar={recommendations[0].avatar}
+        ratings={recommendations[0].ratings}
+      /> */}
     </div>
   )
 }

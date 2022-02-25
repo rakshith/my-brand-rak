@@ -19,7 +19,7 @@ function Card({
   ratings,
 }: CardProps) {
   return (
-    <div className="relative overflow-visible">
+    <div className="relative max-w-md overflow-visible">
       <div
         className={`absolute -top-5 right-10 h-16 w-16 ${
           avatar ? '' : 'hidden'
@@ -31,7 +31,7 @@ function Card({
           alt="user image"
         />
       </div>
-      <div className="max-w-sm  bg-brand-gray shadow-sm">
+      <div className="bg-brand-gray shadow-sm">
         <div className="px-6 py-8">
           <div className="mb-2 text-sm font-semibold">{title}</div>
           <div
