@@ -32,3 +32,7 @@
 .brand-text-gray {
   @apply text-[#8C8C8E];
 }
+
+.brand-text-yellow {
+  @apply text-[#FBCC13];
+}
