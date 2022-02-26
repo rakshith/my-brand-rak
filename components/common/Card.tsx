@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import React from 'react'
 import Rating from './Rating'
 
@@ -18,6 +19,8 @@ function Card({
   avatar,
   ratings,
 }: CardProps) {
+  const router = useRouter()
+
   return (
     <div
       className="
@@ -53,7 +56,7 @@ function Card({
           </div>
           <p className="mt-4 text-sm text-brand-text-gray">{content}</p>
           <div
-            onClick={() => {}}
+            onClick={() => router.push(btnLink ? btnLink : '/')}
             className={`mt-5 cursor-pointer ${btnLink ? '' : 'hidden'}
             text-xs font-semibold text-brand-text-yellow`}
           >

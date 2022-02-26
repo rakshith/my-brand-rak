@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { showNavSidebarAtom } from '../../atoms/navSidebarAtom'
 import Menu from '../Menu'
 import Drawer from './Drawer'
+import DrawerItem from './DrawerItem'
 
 interface NavSidebarProps {
   screen: string
@@ -21,11 +22,7 @@ function NavSidebar({ screen }: NavSidebarProps) {
         return (
           <>
             <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
-              <h2 className="brand-text-style mt-2">HOME</h2>
-              <h2 className="brand-text-style mt-2">PORTFOILO</h2>
-              <h2 className="brand-text-style mt-2">HISTORY</h2>
-              <h2 className="brand-text-style mt-2">BLOG</h2>
-              <h2 className="brand-text-style mt-2">CONTACT</h2>
+              <DrawerItem />
             </Drawer>
           </>
         )
@@ -57,11 +54,7 @@ function NavSidebar({ screen }: NavSidebarProps) {
                   showNavSidebarState ? 'mt-20 flex flex-col p-10' : 'hidden'
                 }`}
               >
-                <h2 className="brand-text-style mt-2">HOME</h2>
-                <h2 className="brand-text-style mt-2">PORTFOILO</h2>
-                <h2 className="brand-text-style mt-2">HISTORY</h2>
-                <h2 className="brand-text-style mt-2">BLOG</h2>
-                <h2 className="brand-text-style mt-2">CONTACT</h2>
+                <DrawerItem />
               </div>
             </div>
           </>
