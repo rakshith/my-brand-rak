@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { currentNavbarItemAtom } from '../../atoms/currentNavbarItem'
 
 import { showNavSidebarAtom } from '../../atoms/navSidebarAtom'
 import Menu from '../Menu'
@@ -14,6 +15,8 @@ function NavSidebar({ screen }: NavSidebarProps) {
   const showNavSidebarState = useRecoilValue(showNavSidebarAtom)
 
   const [isOpen, setIsOpen] = useRecoilState(showNavSidebarAtom)
+
+  const currentNavbarItemState = useRecoilValue(currentNavbarItemAtom)
 
   const renderView = (match: string) => {
     switch (match) {
@@ -47,7 +50,7 @@ function NavSidebar({ screen }: NavSidebarProps) {
                   showNavSidebarState ? 'hidden' : 'flex'
                 } mt-20 rotate-90 text-xs font-normal text-[#8C8C8E]`}
               >
-                HOME
+                {currentNavbarItemState}
               </div>
               <div
                 className={`${
