@@ -19,7 +19,17 @@ function Card({
   ratings,
 }: CardProps) {
   return (
-    <div className="relative max-w-md overflow-visible">
+    <div
+      className="
+    max-h-sm 
+    md:max-h-md 
+    md:max-h-lg
+    relative
+    overflow-visible 
+    md:max-w-md 
+    lg:max-w-lg
+    "
+    >
       <div
         className={`absolute -top-5 right-10 h-16 w-16 ${
           avatar ? '' : 'hidden'

@@ -44,7 +44,8 @@ function MyServices() {
         className="
         grid
         grid-cols-2
-        gap-14
+        gap-5
+        pb-10
         lg:grid-cols-3"
       >
         {myServices.map((item) => (

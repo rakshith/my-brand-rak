@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex justify-between">
+      <div className="flex flex-row">
         <Sidebar direction="right" />
         <Center />
 
