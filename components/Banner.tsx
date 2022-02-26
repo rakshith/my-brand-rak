@@ -7,7 +7,7 @@ function Banner() {
   const words = ['Mobile apps', 'Web apps.']
 
   return (
-    <div className="h-96 w-full bg-cover-pic py-14 px-5 lg:py-11">
+    <div className="pt-11">
       <div className="h-96 w-full bg-cover-pic-over">
         <div
           className="z-0 flex flex-grow flex-col items-center

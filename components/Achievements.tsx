@@ -4,9 +4,8 @@ function Achievements() {
   return (
     <div
       className=" 
-      mt-10 ml-5 
-      mr-10 grid
-    grid-cols-2 gap-y-5 py-10
+    grid
+    grid-cols-2 gap-y-5 py-5
     md:flex md:flex-row md:justify-between md:space-x-1
     lg:flex lg:flex-row 
     lg:justify-between lg:space-x-1"

@@ -10,16 +10,16 @@ import Recommendations from './Recommendations'
 
 function Center() {
   return (
-    <div className={`mb-10 flex w-full flex-grow flex-col`}>
-      <Header />
-      <Banner />
+    <>
+      <div className="space-y-5 px-5">
+        <Banner />
 
-      <Achievements />
-      <div className="space-y-10 px-5">
+        <Achievements />
+
         <MyServices />
         <Recommendations />
       </div>
-    </div>
+    </>
   )
 }
 
