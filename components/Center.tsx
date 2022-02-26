@@ -10,7 +10,7 @@ import Recommendations from './Recommendations'
 
 function Center() {
   return (
-    <div className={`mb-10 flex flex-grow flex-col`}>
+    <div className={`mb-10 flex w-full flex-grow flex-col`}>
       <Header />
       <Banner />
 
