@@ -57,7 +57,7 @@ function GetInTouch() {
               />
               <p>{errors.email?.message}</p>
 
-              <Button type="submit" name="Send a message" />
+              <Button type="submit" name="SEND MESSAGE" />
             </form>
           </div>
         </CardView>

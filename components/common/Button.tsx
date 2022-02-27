@@ -9,7 +9,15 @@ interface ButtonProps {
 function Button({ type, name, onClick }: ButtonProps) {
   return (
     <div>
-      <button type={type}> {name} </button>
+      <button
+        type={type}
+        className=" 
+        bg-brand-text-yellow
+        px-10 py-3 text-xs font-semibold
+      text-black"
+      >
+        {name}
+      </button>
     </div>
   )
 }
