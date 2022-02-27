@@ -36,7 +36,7 @@ function GetInTouch() {
 
   return (
     <div>
-      GetInTouch this is test page
+      <div className="text-xl font-semibold">GetInTouch this is test page</div>
       <div className=" py-8">
         <CardView cardStyle={`p-5 flex w-full`}>
           <div>
