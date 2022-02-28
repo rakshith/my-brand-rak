@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 interface CardViewProps {
-  children: any
-  cardStyle: any
+  children: ReactNode
+  cardStyle: string
 }
 
 function CardView({ children, cardStyle }: CardViewProps) {

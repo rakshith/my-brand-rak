@@ -11,7 +11,7 @@ import CardView from '../common/CardView'
 import Input from '../common/Input'
 import Button from '../common/Button'
 
-type FormData = {
+interface FormData {
   name: string
   email: string
 }
