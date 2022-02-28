@@ -7,7 +7,7 @@ interface CardViewProps {
 
 function CardView({ children, cardStyle }: CardViewProps) {
   return (
-    <div className="bg-brand-gray shadow-lg">
+    <div className="h-full w-full bg-brand-gray shadow-lg">
       <div className={cardStyle}>{children}</div>
     </div>
   )

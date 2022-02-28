@@ -9,8 +9,8 @@ interface InputProps {
 
 function Input({ register, value, Icon, placeholder, ...rest }: InputProps) {
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex flex-row items-center">
+    <div className="flex w-full flex-col items-center">
+      <div className="flex w-full flex-row items-center">
         <div className=" flex h-14 w-20 items-center justify-center bg-brand-dark-gray">
           <Icon className="h-6 w-6 text-brand-text-gray" />
         </div>
@@ -19,7 +19,7 @@ function Input({ register, value, Icon, placeholder, ...rest }: InputProps) {
           {...rest}
           placeholder={placeholder}
           autoComplete="off"
-          className="my-5 h-14 w-full bg-[#242430] p-5 text-white"
+          className="h-14 w-full bg-[#242430] p-5 text-white"
         />
       </div>
     </div>
