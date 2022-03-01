@@ -4,6 +4,7 @@ import {
   useAuthorDetailByIdQuery,
   Author,
   Residence,
+  AuthorLanguages,
 } from '../../graphql/generated/schema'
 
 import Languages from '../Languages'
@@ -22,13 +23,14 @@ function InfoSidebar({ screen }: InfoSidebarProps) {
 
   const [authorDetail, setAuthorDetail] = useState<Author>({} as Author)
   const [residence, setResidence] = useState<Residence>({} as Residence)
-  // const [languages, setLanguages] = useState<Languages>({} as Languages)
+  const [languages, setLanguages] = useState<Array<AuthorLanguages>>([])
 
   useEffect(() => {
     if (data) {
       console.log('useEffect', data.author as Author)
       setAuthorDetail(data.author as Author)
       setResidence((data.author as Author).residence as Residence)
+      setLanguages((data.author as Author).languages)
     }
   }, [data])
 
@@ -47,7 +49,7 @@ function InfoSidebar({ screen }: InfoSidebarProps) {
           age={authorDetail?.age as number}
         />
         <hr className="hr" />
-        <Languages />
+        <Languages languages={languages} />
         <hr className="hr" />
         <SkillsDetail />
       </div>
