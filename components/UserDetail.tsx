@@ -1,6 +1,18 @@
 import React from 'react'
 
-function UserDetail() {
+interface UserDetailProps {
+  name?: string
+  profession?: string
+  occupation?: string
+  photoUrl?: string
+}
+
+function UserDetail({
+  name,
+  profession,
+  occupation,
+  photoUrl,
+}: UserDetailProps) {
   return (
     <div
       className="flex flex-col items-center justify-center 
@@ -8,13 +20,13 @@ function UserDetail() {
     >
       <img
         className="flex h-[100px] w-[100px]  rounded-full"
-        src="https://res.cloudinary.com/daily-now/image/upload/f_auto/v1645619179/avatars/YVgRVEdJHHNrRxSJNuLek"
+        src={photoUrl}
         alt=""
       />
-      <div className="mt-5 font-mono text-sm font-semibold">Rakshith Raj S</div>
+      <div className="mt-5 font-mono text-sm font-semibold">{name}</div>
       <div className="text-xs text-[#8C8C8E]">
-        <div className="text-[#8C8C8E]">Font end engineer</div>
-        <div>UI/UX Professional</div>
+        <div className="text-[#8C8C8E]">{profession}</div>
+        <div>{occupation}</div>
       </div>
     </div>
   )

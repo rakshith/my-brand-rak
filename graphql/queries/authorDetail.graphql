@@ -1,0 +1,23 @@
+query AuthorDetailById($where: AuthorWhereUniqueInput!) {
+  author(where: $where) {
+    age
+    bio
+    dob
+    languages {
+      ... on Languge {
+        id
+        name
+      }
+    }
+    name
+    occupation
+    professional
+    residence {
+      city
+      nationality
+    }
+    avatar {
+      url(transformation: { document: { output: { format: jpg } } })
+    }
+  }
+}

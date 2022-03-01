@@ -2,14 +2,22 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import Layout from '../components/Layout'
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const client = new ApolloClient({
+    uri: process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT,
+    cache: new InMemoryCache(),
+  })
+
   return (
-    <RecoilRoot>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </RecoilRoot>
+    <ApolloProvider client={client}>
+      <RecoilRoot>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </RecoilRoot>
+    </ApolloProvider>
   )
 }
 
