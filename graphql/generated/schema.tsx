@@ -716,6 +716,7 @@ export type Author = Node & {
   dob?: Maybe<Scalars['Date']>;
   /** Get the document in other stages */
   documentInStages: Array<Author>;
+  feats: Array<Feats>;
   /** List of Author versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -756,6 +757,17 @@ export type AuthorDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean'];
   inheritLocale?: Scalars['Boolean'];
   stages?: Array<Stage>;
+};
+
+
+export type AuthorFeatsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<FeatsWhereInput>;
 };
 
 
@@ -855,6 +867,7 @@ export type AuthorCreateInput = {
   bio?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   dob?: InputMaybe<Scalars['Date']>;
+  feats?: InputMaybe<FeatsCreateManyInlineInput>;
   languages?: InputMaybe<AuthorLanguagesCreateManyInlineInput>;
   name: Scalars['String'];
   occupation: Scalars['String'];
@@ -1045,6 +1058,9 @@ export type AuthorManyWhereInput = {
   dob_not?: InputMaybe<Scalars['Date']>;
   /** All values that are not contained in given list. */
   dob_not_in?: InputMaybe<Array<Scalars['Date']>>;
+  feats_every?: InputMaybe<FeatsWhereInput>;
+  feats_none?: InputMaybe<FeatsWhereInput>;
+  feats_some?: InputMaybe<FeatsWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -1350,6 +1366,7 @@ export type AuthorUpdateInput = {
   avatar?: InputMaybe<AssetUpdateOneInlineInput>;
   bio?: InputMaybe<Scalars['String']>;
   dob?: InputMaybe<Scalars['Date']>;
+  feats?: InputMaybe<FeatsUpdateManyInlineInput>;
   languages?: InputMaybe<AuthorLanguagesUpdateManyInlineInput>;
   name?: InputMaybe<Scalars['String']>;
   occupation?: InputMaybe<Scalars['String']>;
@@ -1505,6 +1522,9 @@ export type AuthorWhereInput = {
   dob_not?: InputMaybe<Scalars['Date']>;
   /** All values that are not contained in given list. */
   dob_not_in?: InputMaybe<Array<Scalars['Date']>>;
+  feats_every?: InputMaybe<FeatsWhereInput>;
+  feats_none?: InputMaybe<FeatsWhereInput>;
+  feats_some?: InputMaybe<FeatsWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -2261,6 +2281,538 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
+export type Feats = Node & {
+  __typename?: 'Feats';
+  author?: Maybe<FeatsAuthor>;
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<Feats>;
+  /** List of Feats versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  value?: Maybe<Scalars['String']>;
+};
+
+
+export type FeatsAuthorArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type FeatsCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type FeatsDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type FeatsHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type FeatsPublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type FeatsScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type FeatsUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type FeatsAuthor = Author;
+
+export type FeatsAuthorConnectInput = {
+  Author?: InputMaybe<AuthorConnectInput>;
+};
+
+export type FeatsAuthorCreateInput = {
+  Author?: InputMaybe<AuthorCreateInput>;
+};
+
+export type FeatsAuthorCreateManyInlineInput = {
+  /** Connect multiple existing FeatsAuthor documents */
+  connect?: InputMaybe<Array<FeatsAuthorWhereUniqueInput>>;
+  /** Create and connect multiple existing FeatsAuthor documents */
+  create?: InputMaybe<Array<FeatsAuthorCreateInput>>;
+};
+
+export type FeatsAuthorCreateOneInlineInput = {
+  /** Connect one existing FeatsAuthor document */
+  connect?: InputMaybe<FeatsAuthorWhereUniqueInput>;
+  /** Create and connect one FeatsAuthor document */
+  create?: InputMaybe<FeatsAuthorCreateInput>;
+};
+
+export type FeatsAuthorUpdateInput = {
+  Author?: InputMaybe<AuthorUpdateInput>;
+};
+
+export type FeatsAuthorUpdateManyInlineInput = {
+  /** Connect multiple existing FeatsAuthor documents */
+  connect?: InputMaybe<Array<FeatsAuthorConnectInput>>;
+  /** Create and connect multiple FeatsAuthor documents */
+  create?: InputMaybe<Array<FeatsAuthorCreateInput>>;
+  /** Delete multiple FeatsAuthor documents */
+  delete?: InputMaybe<Array<FeatsAuthorWhereUniqueInput>>;
+  /** Disconnect multiple FeatsAuthor documents */
+  disconnect?: InputMaybe<Array<FeatsAuthorWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing FeatsAuthor documents */
+  set?: InputMaybe<Array<FeatsAuthorWhereUniqueInput>>;
+  /** Update multiple FeatsAuthor documents */
+  update?: InputMaybe<Array<FeatsAuthorUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple FeatsAuthor documents */
+  upsert?: InputMaybe<Array<FeatsAuthorUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type FeatsAuthorUpdateManyWithNestedWhereInput = {
+  Author?: InputMaybe<AuthorUpdateManyWithNestedWhereInput>;
+};
+
+export type FeatsAuthorUpdateOneInlineInput = {
+  /** Connect existing FeatsAuthor document */
+  connect?: InputMaybe<FeatsAuthorWhereUniqueInput>;
+  /** Create and connect one FeatsAuthor document */
+  create?: InputMaybe<FeatsAuthorCreateInput>;
+  /** Delete currently connected FeatsAuthor document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected FeatsAuthor document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single FeatsAuthor document */
+  update?: InputMaybe<FeatsAuthorUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single FeatsAuthor document */
+  upsert?: InputMaybe<FeatsAuthorUpsertWithNestedWhereUniqueInput>;
+};
+
+export type FeatsAuthorUpdateWithNestedWhereUniqueInput = {
+  Author?: InputMaybe<AuthorUpdateWithNestedWhereUniqueInput>;
+};
+
+export type FeatsAuthorUpsertWithNestedWhereUniqueInput = {
+  Author?: InputMaybe<AuthorUpsertWithNestedWhereUniqueInput>;
+};
+
+export type FeatsAuthorWhereInput = {
+  Author?: InputMaybe<AuthorWhereInput>;
+};
+
+export type FeatsAuthorWhereUniqueInput = {
+  Author?: InputMaybe<AuthorWhereUniqueInput>;
+};
+
+export type FeatsConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: FeatsWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type FeatsConnection = {
+  __typename?: 'FeatsConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<FeatsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type FeatsCreateInput = {
+  author?: InputMaybe<FeatsAuthorCreateOneInlineInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  name: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+export type FeatsCreateManyInlineInput = {
+  /** Connect multiple existing Feats documents */
+  connect?: InputMaybe<Array<FeatsWhereUniqueInput>>;
+  /** Create and connect multiple existing Feats documents */
+  create?: InputMaybe<Array<FeatsCreateInput>>;
+};
+
+export type FeatsCreateOneInlineInput = {
+  /** Connect one existing Feats document */
+  connect?: InputMaybe<FeatsWhereUniqueInput>;
+  /** Create and connect one Feats document */
+  create?: InputMaybe<FeatsCreateInput>;
+};
+
+/** An edge in a connection. */
+export type FeatsEdge = {
+  __typename?: 'FeatsEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Feats;
+};
+
+/** Identifies documents */
+export type FeatsManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FeatsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FeatsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FeatsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  name_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  value?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  value_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  value_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  value_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  value_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  value_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  value_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  value_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  value_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  value_starts_with?: InputMaybe<Scalars['String']>;
+};
+
+export enum FeatsOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  ValueAsc = 'value_ASC',
+  ValueDesc = 'value_DESC'
+}
+
+export type FeatsUpdateInput = {
+  author?: InputMaybe<FeatsAuthorUpdateOneInlineInput>;
+  name?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+export type FeatsUpdateManyInlineInput = {
+  /** Connect multiple existing Feats documents */
+  connect?: InputMaybe<Array<FeatsConnectInput>>;
+  /** Create and connect multiple Feats documents */
+  create?: InputMaybe<Array<FeatsCreateInput>>;
+  /** Delete multiple Feats documents */
+  delete?: InputMaybe<Array<FeatsWhereUniqueInput>>;
+  /** Disconnect multiple Feats documents */
+  disconnect?: InputMaybe<Array<FeatsWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Feats documents */
+  set?: InputMaybe<Array<FeatsWhereUniqueInput>>;
+  /** Update multiple Feats documents */
+  update?: InputMaybe<Array<FeatsUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Feats documents */
+  upsert?: InputMaybe<Array<FeatsUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type FeatsUpdateManyInput = {
+  value?: InputMaybe<Scalars['String']>;
+};
+
+export type FeatsUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: FeatsUpdateManyInput;
+  /** Document search */
+  where: FeatsWhereInput;
+};
+
+export type FeatsUpdateOneInlineInput = {
+  /** Connect existing Feats document */
+  connect?: InputMaybe<FeatsWhereUniqueInput>;
+  /** Create and connect one Feats document */
+  create?: InputMaybe<FeatsCreateInput>;
+  /** Delete currently connected Feats document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected Feats document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Feats document */
+  update?: InputMaybe<FeatsUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Feats document */
+  upsert?: InputMaybe<FeatsUpsertWithNestedWhereUniqueInput>;
+};
+
+export type FeatsUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: FeatsUpdateInput;
+  /** Unique document search */
+  where: FeatsWhereUniqueInput;
+};
+
+export type FeatsUpsertInput = {
+  /** Create document if it didn't exist */
+  create: FeatsCreateInput;
+  /** Update document if it exists */
+  update: FeatsUpdateInput;
+};
+
+export type FeatsUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: FeatsUpsertInput;
+  /** Unique document search */
+  where: FeatsWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type FeatsWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FeatsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FeatsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FeatsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  name_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  value?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  value_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  value_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  value_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  value_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  value_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  value_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  value_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  value_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  value_starts_with?: InputMaybe<Scalars['String']>;
+};
+
+/** References Feats record uniquely */
+export type FeatsWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
 export enum ImageFit {
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
   Clip = 'clip',
@@ -2770,6 +3322,8 @@ export type Mutation = {
   createAuthor?: Maybe<Author>;
   /** Create one category */
   createCategory?: Maybe<Category>;
+  /** Create one feats */
+  createFeats?: Maybe<Feats>;
   /** Create one languge */
   createLanguge?: Maybe<Languge>;
   /** Create one recommondation */
@@ -2788,6 +3342,8 @@ export type Mutation = {
   deleteAuthor?: Maybe<Author>;
   /** Delete one category from _all_ existing stages. Returns deleted document. */
   deleteCategory?: Maybe<Category>;
+  /** Delete one feats from _all_ existing stages. Returns deleted document. */
+  deleteFeats?: Maybe<Feats>;
   /** Delete one languge from _all_ existing stages. Returns deleted document. */
   deleteLanguge?: Maybe<Languge>;
   /**
@@ -2811,6 +3367,13 @@ export type Mutation = {
   deleteManyCategories: BatchPayload;
   /** Delete many Category documents, return deleted documents */
   deleteManyCategoriesConnection: CategoryConnection;
+  /**
+   * Delete many Feats documents
+   * @deprecated Please use the new paginated many mutation (deleteManyFeatConnection)
+   */
+  deleteManyFeat: BatchPayload;
+  /** Delete many Feats documents, return deleted documents */
+  deleteManyFeatConnection: FeatsConnection;
   /**
    * Delete many Languge documents
    * @deprecated Please use the new paginated many mutation (deleteManyLangugesConnection)
@@ -2864,6 +3427,8 @@ export type Mutation = {
   publishAuthor?: Maybe<Author>;
   /** Publish one category */
   publishCategory?: Maybe<Category>;
+  /** Publish one feats */
+  publishFeats?: Maybe<Feats>;
   /** Publish one languge */
   publishLanguge?: Maybe<Languge>;
   /**
@@ -2887,6 +3452,13 @@ export type Mutation = {
   publishManyCategories: BatchPayload;
   /** Publish many Category documents */
   publishManyCategoriesConnection: CategoryConnection;
+  /**
+   * Publish many Feats documents
+   * @deprecated Please use the new paginated many mutation (publishManyFeatConnection)
+   */
+  publishManyFeat: BatchPayload;
+  /** Publish many Feats documents */
+  publishManyFeatConnection: FeatsConnection;
   /**
    * Publish many Languge documents
    * @deprecated Please use the new paginated many mutation (publishManyLangugesConnection)
@@ -2936,6 +3508,8 @@ export type Mutation = {
   schedulePublishAuthor?: Maybe<Author>;
   /** Schedule to publish one category */
   schedulePublishCategory?: Maybe<Category>;
+  /** Schedule to publish one feats */
+  schedulePublishFeats?: Maybe<Feats>;
   /** Schedule to publish one languge */
   schedulePublishLanguge?: Maybe<Languge>;
   /** Schedule to publish one recommondation */
@@ -2952,6 +3526,8 @@ export type Mutation = {
   scheduleUnpublishAuthor?: Maybe<Author>;
   /** Unpublish one category from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishCategory?: Maybe<Category>;
+  /** Unpublish one feats from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishFeats?: Maybe<Feats>;
   /** Unpublish one languge from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishLanguge?: Maybe<Languge>;
   /** Unpublish one recommondation from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2968,6 +3544,8 @@ export type Mutation = {
   unpublishAuthor?: Maybe<Author>;
   /** Unpublish one category from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishCategory?: Maybe<Category>;
+  /** Unpublish one feats from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishFeats?: Maybe<Feats>;
   /** Unpublish one languge from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishLanguge?: Maybe<Languge>;
   /**
@@ -2991,6 +3569,13 @@ export type Mutation = {
   unpublishManyCategories: BatchPayload;
   /** Find many Category documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyCategoriesConnection: CategoryConnection;
+  /**
+   * Unpublish many Feats documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyFeatConnection)
+   */
+  unpublishManyFeat: BatchPayload;
+  /** Find many Feats documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyFeatConnection: FeatsConnection;
   /**
    * Unpublish many Languge documents
    * @deprecated Please use the new paginated many mutation (unpublishManyLangugesConnection)
@@ -3040,6 +3625,8 @@ export type Mutation = {
   updateAuthor?: Maybe<Author>;
   /** Update one category */
   updateCategory?: Maybe<Category>;
+  /** Update one feats */
+  updateFeats?: Maybe<Feats>;
   /** Update one languge */
   updateLanguge?: Maybe<Languge>;
   /**
@@ -3063,6 +3650,13 @@ export type Mutation = {
   updateManyCategories: BatchPayload;
   /** Update many Category documents */
   updateManyCategoriesConnection: CategoryConnection;
+  /**
+   * Update many feat
+   * @deprecated Please use the new paginated many mutation (updateManyFeatConnection)
+   */
+  updateManyFeat: BatchPayload;
+  /** Update many Feats documents */
+  updateManyFeatConnection: FeatsConnection;
   /**
    * Update many languges
    * @deprecated Please use the new paginated many mutation (updateManyLangugesConnection)
@@ -3114,6 +3708,8 @@ export type Mutation = {
   upsertAuthor?: Maybe<Author>;
   /** Upsert one category */
   upsertCategory?: Maybe<Category>;
+  /** Upsert one feats */
+  upsertFeats?: Maybe<Feats>;
   /** Upsert one languge */
   upsertLanguge?: Maybe<Languge>;
   /** Upsert one recommondation */
@@ -3139,6 +3735,11 @@ export type MutationCreateAuthorArgs = {
 
 export type MutationCreateCategoryArgs = {
   data: CategoryCreateInput;
+};
+
+
+export type MutationCreateFeatsArgs = {
+  data: FeatsCreateInput;
 };
 
 
@@ -3184,6 +3785,11 @@ export type MutationDeleteAuthorArgs = {
 
 export type MutationDeleteCategoryArgs = {
   where: CategoryWhereUniqueInput;
+};
+
+
+export type MutationDeleteFeatsArgs = {
+  where: FeatsWhereUniqueInput;
 };
 
 
@@ -3234,6 +3840,21 @@ export type MutationDeleteManyCategoriesConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<CategoryManyWhereInput>;
+};
+
+
+export type MutationDeleteManyFeatArgs = {
+  where?: InputMaybe<FeatsManyWhereInput>;
+};
+
+
+export type MutationDeleteManyFeatConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<FeatsManyWhereInput>;
 };
 
 
@@ -3363,6 +3984,12 @@ export type MutationPublishCategoryArgs = {
 };
 
 
+export type MutationPublishFeatsArgs = {
+  to?: Array<Stage>;
+  where: FeatsWhereUniqueInput;
+};
+
+
 export type MutationPublishLangugeArgs = {
   to?: Array<Stage>;
   where: LangugeWhereUniqueInput;
@@ -3426,6 +4053,24 @@ export type MutationPublishManyCategoriesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<CategoryManyWhereInput>;
+};
+
+
+export type MutationPublishManyFeatArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<FeatsManyWhereInput>;
+};
+
+
+export type MutationPublishManyFeatConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<FeatsManyWhereInput>;
 };
 
 
@@ -3570,6 +4215,14 @@ export type MutationSchedulePublishCategoryArgs = {
 };
 
 
+export type MutationSchedulePublishFeatsArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: FeatsWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishLangugeArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
@@ -3636,6 +4289,14 @@ export type MutationScheduleUnpublishCategoryArgs = {
 };
 
 
+export type MutationScheduleUnpublishFeatsArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: FeatsWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishLangugeArgs = {
   from?: Array<Stage>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
@@ -3693,6 +4354,12 @@ export type MutationUnpublishAuthorArgs = {
 export type MutationUnpublishCategoryArgs = {
   from?: Array<Stage>;
   where: CategoryWhereUniqueInput;
+};
+
+
+export type MutationUnpublishFeatsArgs = {
+  from?: Array<Stage>;
+  where: FeatsWhereUniqueInput;
 };
 
 
@@ -3757,6 +4424,24 @@ export type MutationUnpublishManyCategoriesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
   where?: InputMaybe<CategoryManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyFeatArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<FeatsManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyFeatConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<FeatsManyWhereInput>;
 };
 
 
@@ -3892,6 +4577,12 @@ export type MutationUpdateCategoryArgs = {
 };
 
 
+export type MutationUpdateFeatsArgs = {
+  data: FeatsUpdateInput;
+  where: FeatsWhereUniqueInput;
+};
+
+
 export type MutationUpdateLangugeArgs = {
   data: LangugeUpdateInput;
   where: LangugeWhereUniqueInput;
@@ -3946,6 +4637,23 @@ export type MutationUpdateManyCategoriesConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<CategoryManyWhereInput>;
+};
+
+
+export type MutationUpdateManyFeatArgs = {
+  data: FeatsUpdateManyInput;
+  where?: InputMaybe<FeatsManyWhereInput>;
+};
+
+
+export type MutationUpdateManyFeatConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: FeatsUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<FeatsManyWhereInput>;
 };
 
 
@@ -4082,6 +4790,12 @@ export type MutationUpsertCategoryArgs = {
 };
 
 
+export type MutationUpsertFeatsArgs = {
+  upsert: FeatsUpsertInput;
+  where: FeatsWhereUniqueInput;
+};
+
+
 export type MutationUpsertLangugeArgs = {
   upsert: LangugeUpsertInput;
   where: LangugeWhereUniqueInput;
@@ -4167,6 +4881,14 @@ export type Query = {
   category?: Maybe<Category>;
   /** Retrieve document version */
   categoryVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple feat */
+  feat: Array<Feats>;
+  /** Retrieve multiple feat using the Relay connection interface */
+  featConnection: FeatsConnection;
+  /** Retrieve a single feats */
+  feats?: Maybe<Feats>;
+  /** Retrieve document version */
+  featsVersion?: Maybe<DocumentVersion>;
   /** Retrieve a single languge */
   languge?: Maybe<Languge>;
   /** Retrieve document version */
@@ -4340,6 +5062,44 @@ export type QueryCategoryArgs = {
 
 
 export type QueryCategoryVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryFeatArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<FeatsOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<FeatsWhereInput>;
+};
+
+
+export type QueryFeatConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<FeatsOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<FeatsWhereInput>;
+};
+
+
+export type QueryFeatsArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: FeatsWhereUniqueInput;
+};
+
+
+export type QueryFeatsVersionArgs = {
   where: VersionWhereInput;
 };
 
@@ -5790,7 +6550,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Author | Category | Languge | Recommondation | Residence | Service | Skill;
+export type ScheduledOperationAffectedDocument = Asset | Author | Category | Feats | Languge | Recommondation | Residence | Service | Skill;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -8093,7 +8853,7 @@ export type AuthorDetailByIdQueryVariables = Exact<{
 }>;
 
 
-export type AuthorDetailByIdQuery = { __typename?: 'Query', author?: { __typename?: 'Author', age?: number | null, bio?: string | null, dob?: any | null, name: string, occupation: string, professional: string, languages: Array<{ __typename?: 'Languge', id: string, name?: string | null, fluency?: number | null }>, residence?: { __typename?: 'Residence', city?: string | null, nationality?: string | null } | null, avatar?: { __typename?: 'Asset', url: string } | null, skills: Array<{ __typename?: 'Skill', id: string, name?: string | null, level?: number | null }> } | null };
+export type AuthorDetailByIdQuery = { __typename?: 'Query', author?: { __typename?: 'Author', age?: number | null, bio?: string | null, dob?: any | null, name: string, occupation: string, professional: string, languages: Array<{ __typename?: 'Languge', id: string, name?: string | null, fluency?: number | null }>, residence?: { __typename?: 'Residence', city?: string | null, nationality?: string | null } | null, avatar?: { __typename?: 'Asset', url: string } | null, skills: Array<{ __typename?: 'Skill', id: string, name?: string | null, level?: number | null }>, feats: Array<{ __typename?: 'Feats', name: string, value?: string | null }> } | null };
 
 
 export const AuthorDetailByIdDocument = gql`
@@ -8125,6 +8885,10 @@ export const AuthorDetailByIdDocument = gql`
         name
         level
       }
+    }
+    feats {
+      name
+      value
     }
   }
 }

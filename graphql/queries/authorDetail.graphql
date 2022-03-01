@@ -27,5 +27,9 @@ query AuthorDetailById($where: AuthorWhereUniqueInput!) {
         level
       }
     }
+    feats {
+      name
+      value
+    }
   }
 }
