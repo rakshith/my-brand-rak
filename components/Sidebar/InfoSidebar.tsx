@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
-import { useAuthorDetailByIdQuery } from '../../graphql/generated/schema'
+import {
+  useAuthorDetailByIdQuery,
+  Author,
+} from '../../graphql/generated/schema'
 
 import Languages from '../Languages'
 import ResidenceDetail from '../ResidenceDetail'
@@ -16,15 +19,21 @@ function InfoSidebar({ screen }: InfoSidebarProps) {
     variables: { where: { id: 'cl080w96f34v70dpocmrs2z6s' } },
   })
 
-  console.log('useAuthorDetailByIdQuery', data?.author)
+  const [authorDetail, setAuthorDetail] = useState<Author>({} as Author)
+
+  useEffect(() => {
+    if (data) {
+      setAuthorDetail(data.author as Author)
+    }
+  }, [data])
 
   return (
     <div className={`hidden w-72 flex-col lg:flex`}>
       <UserDetail
-        name={data?.author?.name}
-        profession={data?.author?.professional}
-        occupation={data?.author?.occupation}
-        photoUrl={data?.author?.avatar?.url}
+        name={authorDetail.name}
+        profession={authorDetail.professional}
+        occupation={authorDetail.occupation}
+        photoUrl={authorDetail.avatar?.url}
       />
       <div className="px-10 py-5">
         <ResidenceDetail />
