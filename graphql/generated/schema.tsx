@@ -7169,6 +7169,7 @@ export type Skill = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  level?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -7254,6 +7255,7 @@ export type SkillCreateInput = {
   author?: InputMaybe<AuthorCreateOneInlineInput>;
   category?: InputMaybe<CategoryCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  level?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -7328,6 +7330,21 @@ export type SkillManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
+  level?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  level_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  level_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  level_in?: InputMaybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  level_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  level_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  level_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  level_not_in?: InputMaybe<Array<Scalars['Int']>>;
   name?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   name_contains?: InputMaybe<Scalars['String']>;
@@ -7389,6 +7406,8 @@ export enum SkillOrderByInput {
   CreatedAtDesc = 'createdAt_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
+  LevelAsc = 'level_ASC',
+  LevelDesc = 'level_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
@@ -7400,6 +7419,7 @@ export enum SkillOrderByInput {
 export type SkillUpdateInput = {
   author?: InputMaybe<AuthorUpdateOneInlineInput>;
   category?: InputMaybe<CategoryUpdateOneInlineInput>;
+  level?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
 };
 
@@ -7421,6 +7441,7 @@ export type SkillUpdateManyInlineInput = {
 };
 
 export type SkillUpdateManyInput = {
+  level?: InputMaybe<Scalars['Int']>;
   name?: InputMaybe<Scalars['String']>;
 };
 
@@ -7514,6 +7535,21 @@ export type SkillWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
+  level?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  level_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  level_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  level_in?: InputMaybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  level_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  level_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  level_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  level_not_in?: InputMaybe<Array<Scalars['Int']>>;
   name?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   name_contains?: InputMaybe<Scalars['String']>;
@@ -8057,7 +8093,7 @@ export type AuthorDetailByIdQueryVariables = Exact<{
 }>;
 
 
-export type AuthorDetailByIdQuery = { __typename?: 'Query', author?: { __typename?: 'Author', age?: number | null, bio?: string | null, dob?: any | null, name: string, occupation: string, professional: string, languages: Array<{ __typename?: 'Languge', id: string, name?: string | null, fluency?: number | null }>, residence?: { __typename?: 'Residence', city?: string | null, nationality?: string | null } | null, avatar?: { __typename?: 'Asset', url: string } | null } | null };
+export type AuthorDetailByIdQuery = { __typename?: 'Query', author?: { __typename?: 'Author', age?: number | null, bio?: string | null, dob?: any | null, name: string, occupation: string, professional: string, languages: Array<{ __typename?: 'Languge', id: string, name?: string | null, fluency?: number | null }>, residence?: { __typename?: 'Residence', city?: string | null, nationality?: string | null } | null, avatar?: { __typename?: 'Asset', url: string } | null, skills: Array<{ __typename?: 'Skill', id: string, name?: string | null, level?: number | null }> } | null };
 
 
 export const AuthorDetailByIdDocument = gql`
@@ -8082,6 +8118,13 @@ export const AuthorDetailByIdDocument = gql`
     }
     avatar {
       url(transformation: {document: {output: {format: jpg}}})
+    }
+    skills {
+      ... on Skill {
+        id
+        name
+        level
+      }
     }
   }
 }

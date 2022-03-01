@@ -13,12 +13,12 @@ function Languages({ languages }: LangugesProps) {
 
       <div className="mt-5 flex flex-row justify-evenly">
         {languages.map((language: AuthorLanguages) => (
-          <>
+          <div key={language.id}>
             <RoundProgressBar
               value={language.fluency || 0}
               title={language.name || ''}
             />
-          </>
+          </div>
         ))}
       </div>
     </>

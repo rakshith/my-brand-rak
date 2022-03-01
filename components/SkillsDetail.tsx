@@ -1,16 +1,21 @@
 import React from 'react'
+import { AuthorSkills } from '../graphql/generated/schema'
 import LineProgressBar from './LineProgressBar'
 
-function SkillsDetail() {
+interface SkillsDetailProps {
+  skills: Array<AuthorSkills>
+}
+
+function SkillsDetail({ skills }: SkillsDetailProps) {
   return (
     <div className="flex flex-col">
       <div className="skill-header mt-4">Coding</div>
-      <LineProgressBar value={90} title={'ReacJS/NextJS'} />
-      <LineProgressBar value={80} title={'React Native Mobile'} />
-      <LineProgressBar value={76} title={'HTML/CSS'} />
-      <LineProgressBar value={70} title={'MicroService Architecture'} />
-      <LineProgressBar value={50} title={'NodeJS/NestJS'} />
-      <LineProgressBar value={30} title={'Java'} />
+
+      {skills.map((skill: AuthorSkills) => (
+        <div key={skill.id}>
+          <LineProgressBar value={skill.level || 0} title={skill.name || ''} />
+        </div>
+      ))}
     </div>
   )
 }

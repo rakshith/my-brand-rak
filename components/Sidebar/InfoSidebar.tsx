@@ -5,6 +5,7 @@ import {
   Author,
   Residence,
   AuthorLanguages,
+  AuthorSkills,
 } from '../../graphql/generated/schema'
 
 import Languages from '../Languages'
@@ -24,6 +25,7 @@ function InfoSidebar({ screen }: InfoSidebarProps) {
   const [authorDetail, setAuthorDetail] = useState<Author>({} as Author)
   const [residence, setResidence] = useState<Residence>({} as Residence)
   const [languages, setLanguages] = useState<Array<AuthorLanguages>>([])
+  const [skills, setSkills] = useState<Array<AuthorSkills>>([])
 
   useEffect(() => {
     if (data) {
@@ -31,6 +33,7 @@ function InfoSidebar({ screen }: InfoSidebarProps) {
       setAuthorDetail(data.author as Author)
       setResidence((data.author as Author).residence as Residence)
       setLanguages((data.author as Author).languages)
+      setSkills((data.author as Author).skills)
     }
   }, [data])
 
@@ -51,7 +54,7 @@ function InfoSidebar({ screen }: InfoSidebarProps) {
         <hr className="hr" />
         <Languages languages={languages} />
         <hr className="hr" />
-        <SkillsDetail />
+        <SkillsDetail skills={skills} />
       </div>
     </div>
   )

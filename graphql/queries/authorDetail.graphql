@@ -20,5 +20,12 @@ query AuthorDetailById($where: AuthorWhereUniqueInput!) {
     avatar {
       url(transformation: { document: { output: { format: jpg } } })
     }
+    skills {
+      ... on Skill {
+        id
+        name
+        level
+      }
+    }
   }
 }
