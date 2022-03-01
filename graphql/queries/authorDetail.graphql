@@ -7,6 +7,7 @@ query AuthorDetailById($where: AuthorWhereUniqueInput!) {
       ... on Languge {
         id
         name
+        fluency
       }
     }
     name

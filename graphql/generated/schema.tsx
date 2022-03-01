@@ -2296,6 +2296,7 @@ export type Languge = Node & {
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
   documentInStages: Array<Languge>;
+  fluency?: Maybe<Scalars['Float']>;
   /** List of Languge versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -2379,6 +2380,7 @@ export type LangugeConnection = {
 export type LangugeCreateInput = {
   author?: InputMaybe<AuthorCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  fluency?: InputMaybe<Scalars['Float']>;
   name?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -2433,6 +2435,21 @@ export type LangugeManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  fluency?: InputMaybe<Scalars['Float']>;
+  /** All values greater than the given value. */
+  fluency_gt?: InputMaybe<Scalars['Float']>;
+  /** All values greater than or equal the given value. */
+  fluency_gte?: InputMaybe<Scalars['Float']>;
+  /** All values that are contained in given list. */
+  fluency_in?: InputMaybe<Array<Scalars['Float']>>;
+  /** All values less than the given value. */
+  fluency_lt?: InputMaybe<Scalars['Float']>;
+  /** All values less than or equal the given value. */
+  fluency_lte?: InputMaybe<Scalars['Float']>;
+  /** All values that are not equal to given value. */
+  fluency_not?: InputMaybe<Scalars['Float']>;
+  /** All values that are not contained in given list. */
+  fluency_not_in?: InputMaybe<Array<Scalars['Float']>>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -2511,6 +2528,8 @@ export type LangugeManyWhereInput = {
 export enum LangugeOrderByInput {
   CreatedAtAsc = 'createdAt_ASC',
   CreatedAtDesc = 'createdAt_DESC',
+  FluencyAsc = 'fluency_ASC',
+  FluencyDesc = 'fluency_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
@@ -2523,6 +2542,7 @@ export enum LangugeOrderByInput {
 
 export type LangugeUpdateInput = {
   author?: InputMaybe<AuthorUpdateOneInlineInput>;
+  fluency?: InputMaybe<Scalars['Float']>;
   name?: InputMaybe<Scalars['String']>;
 };
 
@@ -2544,6 +2564,7 @@ export type LangugeUpdateManyInlineInput = {
 };
 
 export type LangugeUpdateManyInput = {
+  fluency?: InputMaybe<Scalars['Float']>;
   name?: InputMaybe<Scalars['String']>;
 };
 
@@ -2617,6 +2638,21 @@ export type LangugeWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  fluency?: InputMaybe<Scalars['Float']>;
+  /** All values greater than the given value. */
+  fluency_gt?: InputMaybe<Scalars['Float']>;
+  /** All values greater than or equal the given value. */
+  fluency_gte?: InputMaybe<Scalars['Float']>;
+  /** All values that are contained in given list. */
+  fluency_in?: InputMaybe<Array<Scalars['Float']>>;
+  /** All values less than the given value. */
+  fluency_lt?: InputMaybe<Scalars['Float']>;
+  /** All values less than or equal the given value. */
+  fluency_lte?: InputMaybe<Scalars['Float']>;
+  /** All values that are not equal to given value. */
+  fluency_not?: InputMaybe<Scalars['Float']>;
+  /** All values that are not contained in given list. */
+  fluency_not_in?: InputMaybe<Array<Scalars['Float']>>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -8021,7 +8057,7 @@ export type AuthorDetailByIdQueryVariables = Exact<{
 }>;
 
 
-export type AuthorDetailByIdQuery = { __typename?: 'Query', author?: { __typename?: 'Author', age?: number | null, bio?: string | null, dob?: any | null, name: string, occupation: string, professional: string, languages: Array<{ __typename?: 'Languge', id: string, name?: string | null }>, residence?: { __typename?: 'Residence', city?: string | null, nationality?: string | null } | null, avatar?: { __typename?: 'Asset', url: string } | null } | null };
+export type AuthorDetailByIdQuery = { __typename?: 'Query', author?: { __typename?: 'Author', age?: number | null, bio?: string | null, dob?: any | null, name: string, occupation: string, professional: string, languages: Array<{ __typename?: 'Languge', id: string, name?: string | null, fluency?: number | null }>, residence?: { __typename?: 'Residence', city?: string | null, nationality?: string | null } | null, avatar?: { __typename?: 'Asset', url: string } | null } | null };
 
 
 export const AuthorDetailByIdDocument = gql`
@@ -8034,6 +8070,7 @@ export const AuthorDetailByIdDocument = gql`
       ... on Languge {
         id
         name
+        fluency
       }
     }
     name
