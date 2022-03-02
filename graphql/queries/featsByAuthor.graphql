@@ -1,0 +1,9 @@
+query FeatsByAuthor($where: AuthorWhereUniqueInput!) {
+  author(where: $where) {
+    feats {
+      name
+      value
+      id
+    }
+  }
+}

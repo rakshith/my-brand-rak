@@ -8853,7 +8853,14 @@ export type AuthorDetailByIdQueryVariables = Exact<{
 }>;
 
 
-export type AuthorDetailByIdQuery = { __typename?: 'Query', author?: { __typename?: 'Author', age?: number | null, bio?: string | null, dob?: any | null, name: string, occupation: string, professional: string, languages: Array<{ __typename?: 'Languge', id: string, name?: string | null, fluency?: number | null }>, residence?: { __typename?: 'Residence', city?: string | null, nationality?: string | null } | null, avatar?: { __typename?: 'Asset', url: string } | null, skills: Array<{ __typename?: 'Skill', id: string, name?: string | null, level?: number | null }>, feats: Array<{ __typename?: 'Feats', name: string, value?: string | null }> } | null };
+export type AuthorDetailByIdQuery = { __typename?: 'Query', author?: { __typename?: 'Author', age?: number | null, bio?: string | null, dob?: any | null, name: string, occupation: string, professional: string, languages: Array<{ __typename?: 'Languge', id: string, name?: string | null, fluency?: number | null }>, residence?: { __typename?: 'Residence', city?: string | null, nationality?: string | null } | null, avatar?: { __typename?: 'Asset', url: string } | null, skills: Array<{ __typename?: 'Skill', id: string, name?: string | null, level?: number | null }> } | null };
+
+export type FeatsByAuthorQueryVariables = Exact<{
+  where: AuthorWhereUniqueInput;
+}>;
+
+
+export type FeatsByAuthorQuery = { __typename?: 'Query', author?: { __typename?: 'Author', feats: Array<{ __typename?: 'Feats', name: string, value?: string | null, id: string }> } | null };
 
 
 export const AuthorDetailByIdDocument = gql`
@@ -8886,10 +8893,6 @@ export const AuthorDetailByIdDocument = gql`
         level
       }
     }
-    feats {
-      name
-      value
-    }
   }
 }
     `;
@@ -8921,3 +8924,42 @@ export function useAuthorDetailByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type AuthorDetailByIdQueryHookResult = ReturnType<typeof useAuthorDetailByIdQuery>;
 export type AuthorDetailByIdLazyQueryHookResult = ReturnType<typeof useAuthorDetailByIdLazyQuery>;
 export type AuthorDetailByIdQueryResult = Apollo.QueryResult<AuthorDetailByIdQuery, AuthorDetailByIdQueryVariables>;
+export const FeatsByAuthorDocument = gql`
+    query FeatsByAuthor($where: AuthorWhereUniqueInput!) {
+  author(where: $where) {
+    feats {
+      name
+      value
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useFeatsByAuthorQuery__
+ *
+ * To run a query within a React component, call `useFeatsByAuthorQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFeatsByAuthorQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFeatsByAuthorQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useFeatsByAuthorQuery(baseOptions: Apollo.QueryHookOptions<FeatsByAuthorQuery, FeatsByAuthorQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FeatsByAuthorQuery, FeatsByAuthorQueryVariables>(FeatsByAuthorDocument, options);
+      }
+export function useFeatsByAuthorLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FeatsByAuthorQuery, FeatsByAuthorQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FeatsByAuthorQuery, FeatsByAuthorQueryVariables>(FeatsByAuthorDocument, options);
+        }
+export type FeatsByAuthorQueryHookResult = ReturnType<typeof useFeatsByAuthorQuery>;
+export type FeatsByAuthorLazyQueryHookResult = ReturnType<typeof useFeatsByAuthorLazyQuery>;
+export type FeatsByAuthorQueryResult = Apollo.QueryResult<FeatsByAuthorQuery, FeatsByAuthorQueryVariables>;
