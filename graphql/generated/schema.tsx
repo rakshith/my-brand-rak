@@ -8862,6 +8862,13 @@ export type FeatsByAuthorQueryVariables = Exact<{
 
 export type FeatsByAuthorQuery = { __typename?: 'Query', author?: { __typename?: 'Author', feats: Array<{ __typename?: 'Feats', name: string, value?: string | null, id: string }> } | null };
 
+export type ServicesByAuthorQueryVariables = Exact<{
+  where: AuthorWhereUniqueInput;
+}>;
+
+
+export type ServicesByAuthorQuery = { __typename?: 'Query', author?: { __typename?: 'Author', id: string } | null, services: Array<{ __typename?: 'Service', id: string, name: string, description?: string | null }> };
+
 
 export const AuthorDetailByIdDocument = gql`
     query AuthorDetailById($where: AuthorWhereUniqueInput!) {
@@ -8963,3 +8970,43 @@ export function useFeatsByAuthorLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type FeatsByAuthorQueryHookResult = ReturnType<typeof useFeatsByAuthorQuery>;
 export type FeatsByAuthorLazyQueryHookResult = ReturnType<typeof useFeatsByAuthorLazyQuery>;
 export type FeatsByAuthorQueryResult = Apollo.QueryResult<FeatsByAuthorQuery, FeatsByAuthorQueryVariables>;
+export const ServicesByAuthorDocument = gql`
+    query ServicesByAuthor($where: AuthorWhereUniqueInput!) {
+  author(where: $where) {
+    id
+  }
+  services {
+    id
+    name
+    description
+  }
+}
+    `;
+
+/**
+ * __useServicesByAuthorQuery__
+ *
+ * To run a query within a React component, call `useServicesByAuthorQuery` and pass it any options that fit your needs.
+ * When your component renders, `useServicesByAuthorQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useServicesByAuthorQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useServicesByAuthorQuery(baseOptions: Apollo.QueryHookOptions<ServicesByAuthorQuery, ServicesByAuthorQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ServicesByAuthorQuery, ServicesByAuthorQueryVariables>(ServicesByAuthorDocument, options);
+      }
+export function useServicesByAuthorLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ServicesByAuthorQuery, ServicesByAuthorQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ServicesByAuthorQuery, ServicesByAuthorQueryVariables>(ServicesByAuthorDocument, options);
+        }
+export type ServicesByAuthorQueryHookResult = ReturnType<typeof useServicesByAuthorQuery>;
+export type ServicesByAuthorLazyQueryHookResult = ReturnType<typeof useServicesByAuthorLazyQuery>;
+export type ServicesByAuthorQueryResult = Apollo.QueryResult<ServicesByAuthorQuery, ServicesByAuthorQueryVariables>;

@@ -1,0 +1,10 @@
+query ServicesByAuthor($where: AuthorWhereUniqueInput!) {
+  author(where: $where) {
+    id
+  }
+  services {
+    id
+    name
+    description
+  }
+}

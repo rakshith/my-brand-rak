@@ -1,4 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {
+  useServicesByAuthorQuery,
+  Service,
+  Author,
+  ServicesByAuthorQuery,
+} from '../graphql/generated/schema'
 import Card from './common/Card'
 
 const myServices = [
@@ -37,6 +43,20 @@ const myServices = [
 ]
 
 function MyServices() {
+  const { loading, error, data } = useServicesByAuthorQuery({
+    variables: {
+      where: { id: 'cl080w96f34v70dpocmrs2z6s' },
+    },
+    fetchPolicy: 'network-only',
+  })
+  const [services, setServices] = useState<Array<Service>>([])
+
+  useEffect(() => {
+    if (data) {
+      setServices((data as ServicesByAuthorQuery).services as Array<Service>)
+    }
+  }, [data])
+
   return (
     <>
       <h1>My Services</h1>
@@ -48,12 +68,12 @@ function MyServices() {
         pb-10
         lg:grid-cols-3"
       >
-        {myServices.map((item) => (
+        {services.map((item) => (
           <>
             <Card
               title={item.name}
-              content={item.description}
-              btnLink={item.pathTo}
+              content={item.description as string}
+              btnLink={'/contact'}
             />
           </>
         ))}
