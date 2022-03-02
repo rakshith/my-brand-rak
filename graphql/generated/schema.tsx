@@ -5424,6 +5424,7 @@ export type Recommondation = Node & {
   createdAt: Scalars['DateTime'];
   /** User that created this document */
   createdBy?: Maybe<User>;
+  designation?: Maybe<Scalars['String']>;
   /** Get the document in other stages */
   documentInStages: Array<Recommondation>;
   /** List of Recommondation versions */
@@ -5596,6 +5597,7 @@ export type RecommondationCreateInput = {
   author?: InputMaybe<RecommondationAuthorCreateOneInlineInput>;
   avatar?: InputMaybe<AssetCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  designation?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   recommendation: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -5651,6 +5653,25 @@ export type RecommondationManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  designation?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  designation_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  designation_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  designation_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  designation_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  designation_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  designation_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  designation_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  designation_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  designation_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -5748,6 +5769,8 @@ export type RecommondationManyWhereInput = {
 export enum RecommondationOrderByInput {
   CreatedAtAsc = 'createdAt_ASC',
   CreatedAtDesc = 'createdAt_DESC',
+  DesignationAsc = 'designation_ASC',
+  DesignationDesc = 'designation_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
@@ -5763,6 +5786,7 @@ export enum RecommondationOrderByInput {
 export type RecommondationUpdateInput = {
   author?: InputMaybe<RecommondationAuthorUpdateOneInlineInput>;
   avatar?: InputMaybe<AssetUpdateOneInlineInput>;
+  designation?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   recommendation?: InputMaybe<Scalars['String']>;
 };
@@ -5785,6 +5809,7 @@ export type RecommondationUpdateManyInlineInput = {
 };
 
 export type RecommondationUpdateManyInput = {
+  designation?: InputMaybe<Scalars['String']>;
   recommendation?: InputMaybe<Scalars['String']>;
 };
 
@@ -5858,6 +5883,25 @@ export type RecommondationWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  designation?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  designation_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  designation_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  designation_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  designation_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  designation_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  designation_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  designation_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  designation_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  designation_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -8862,6 +8906,13 @@ export type FeatsByAuthorQueryVariables = Exact<{
 
 export type FeatsByAuthorQuery = { __typename?: 'Query', author?: { __typename?: 'Author', feats: Array<{ __typename?: 'Feats', name: string, value?: string | null, id: string }> } | null };
 
+export type RecommondationByAuthorQueryVariables = Exact<{
+  where: AuthorWhereUniqueInput;
+}>;
+
+
+export type RecommondationByAuthorQuery = { __typename?: 'Query', author?: { __typename?: 'Author', recommondations: Array<{ __typename?: 'Recommondation', name: string, recommendation: string, designation?: string | null, avatar?: { __typename?: 'Asset', url: string } | null }> } | null };
+
 export type ServicesByAuthorQueryVariables = Exact<{
   where: AuthorWhereUniqueInput;
 }>;
@@ -8970,6 +9021,48 @@ export function useFeatsByAuthorLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type FeatsByAuthorQueryHookResult = ReturnType<typeof useFeatsByAuthorQuery>;
 export type FeatsByAuthorLazyQueryHookResult = ReturnType<typeof useFeatsByAuthorLazyQuery>;
 export type FeatsByAuthorQueryResult = Apollo.QueryResult<FeatsByAuthorQuery, FeatsByAuthorQueryVariables>;
+export const RecommondationByAuthorDocument = gql`
+    query RecommondationByAuthor($where: AuthorWhereUniqueInput!) {
+  author(where: $where) {
+    recommondations {
+      avatar {
+        url
+      }
+      name
+      recommendation
+      designation
+    }
+  }
+}
+    `;
+
+/**
+ * __useRecommondationByAuthorQuery__
+ *
+ * To run a query within a React component, call `useRecommondationByAuthorQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRecommondationByAuthorQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRecommondationByAuthorQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useRecommondationByAuthorQuery(baseOptions: Apollo.QueryHookOptions<RecommondationByAuthorQuery, RecommondationByAuthorQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RecommondationByAuthorQuery, RecommondationByAuthorQueryVariables>(RecommondationByAuthorDocument, options);
+      }
+export function useRecommondationByAuthorLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RecommondationByAuthorQuery, RecommondationByAuthorQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RecommondationByAuthorQuery, RecommondationByAuthorQueryVariables>(RecommondationByAuthorDocument, options);
+        }
+export type RecommondationByAuthorQueryHookResult = ReturnType<typeof useRecommondationByAuthorQuery>;
+export type RecommondationByAuthorLazyQueryHookResult = ReturnType<typeof useRecommondationByAuthorLazyQuery>;
+export type RecommondationByAuthorQueryResult = Apollo.QueryResult<RecommondationByAuthorQuery, RecommondationByAuthorQueryVariables>;
 export const ServicesByAuthorDocument = gql`
     query ServicesByAuthor($where: AuthorWhereUniqueInput!) {
   author(where: $where) {

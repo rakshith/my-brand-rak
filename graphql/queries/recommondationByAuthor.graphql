@@ -1,0 +1,12 @@
+query RecommondationByAuthor($where: AuthorWhereUniqueInput!) {
+  author(where: $where) {
+    recommondations {
+      avatar {
+        url
+      }
+      name
+      recommendation
+      designation
+    }
+  }
+}

@@ -1,43 +1,67 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {
+  useRecommondationByAuthorQuery,
+  Recommondation,
+  RecommondationByAuthorQuery,
+} from '../graphql/generated/schema'
 import Card from './common/Card'
-import CardAvatar from './common/CardAvatar'
 
-const recommendations = [
-  {
-    id: 1,
-    title: 'Recommendations 1',
-    subtitle: 'subtitle1',
-    description: 'Descriptions',
-    avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
-    ratings: 5,
-  },
+// const recommendations = [
+//   {
+//     id: 1,
+//     title: 'Recommendations 1',
+//     subtitle: 'subtitle1',
+//     description: 'Descriptions',
+//     avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
+//     ratings: 5,
+//   },
 
-  {
-    id: 2,
-    title: 'Recommendations 2',
-    subtitle: 'subtitle2',
-    description: 'Descriptions',
-    avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
-  },
-  {
-    id: 1,
-    title: 'Recommendations 1',
-    subtitle: 'subtitle1',
-    description: 'Descriptions',
-    avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
-    ratings: 5,
-  },
+//   {
+//     id: 2,
+//     title: 'Recommendations 2',
+//     subtitle: 'subtitle2',
+//     description: 'Descriptions',
+//     avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
+//   },
+//   {
+//     id: 1,
+//     title: 'Recommendations 1',
+//     subtitle: 'subtitle1',
+//     description: 'Descriptions',
+//     avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
+//     ratings: 5,
+//   },
 
-  {
-    id: 2,
-    title: 'Recommendations 2',
-    subtitle: 'subtitle2',
-    description: 'Descriptions',
-    avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
-  },
-]
+//   {
+//     id: 2,
+//     title: 'Recommendations 2',
+//     subtitle: 'subtitle2',
+//     description: 'Descriptions',
+//     avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
+//   },
+// ]
 
 function Recommendations() {
+  const { loading, error, data } = useRecommondationByAuthorQuery({
+    variables: {
+      where: { id: 'cl080w96f34v70dpocmrs2z6s' },
+    },
+    fetchPolicy: 'network-only',
+  })
+  const [recommendations, setRecommendations] = useState<Array<Recommondation>>(
+    []
+  )
+
+  useEffect(() => {
+    if (data) {
+      console.log('recommendations', data)
+      setRecommendations(
+        (data as RecommondationByAuthorQuery).author
+          ?.recommondations as Array<Recommondation>
+      )
+    }
+  }, [data])
+
   return (
     <div>
       Recommendations
@@ -81,14 +105,13 @@ function Recommendations() {
         md:grid-cols-2
         lg:grid-cols-3"
       >
-        {recommendations.map((item) => (
+        {recommendations.map((item: Recommondation) => (
           <>
             <Card
-              title={item.title}
-              subtitle={item.subtitle}
-              content={item.description}
-              avatar={item.avatar}
-              ratings={item.ratings}
+              title={item.name}
+              subtitle={item.designation as string}
+              content={item.recommendation}
+              avatar={item.avatar?.url}
             />
           </>
         ))}
