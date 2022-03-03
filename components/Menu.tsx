@@ -22,16 +22,16 @@ function Menu({ showClose }: MenuProps) {
 
     // navSidebarStyleState={w: `w-[250px]`}
     // centerStyleState = {ml: `ml-0`}
-    setNavSidebarStyleState({ cw: `w-0` })
-    setCenterStyleState({ cml: `ml-0` })
+    // setNavSidebarStyleState({ cw: `w-0` })
+    // setCenterStyleState({ cml: `ml-0` })
 
     setShowNavSidebar(!showNavSidebarState)
   }
 
   const onOpen = (e: MouseEvent) => {
     // centerStyleState = {`ml-[250px]`}
-    setNavSidebarStyleState({ cw: `w-[250px]` })
-    setCenterStyleState({ cml: `ml-[250px]` })
+    // setNavSidebarStyleState({ cw: `w-[250px]` })
+    // setCenterStyleState({ cml: `ml-[250px]` })
     setShowNavSidebar(!showNavSidebarState)
   }
 

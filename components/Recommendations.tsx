@@ -135,17 +135,19 @@ function Recommendations() {
       </div> */}
       <div
         className="
-      mt-10 
+      mt-5
+      mb-20 
       flex
       flex-row
       space-x-5
       overflow-x-scroll
       overscroll-x-auto
-      pt-10"
+      pt-10
+      scrollbar-hide"
       >
         {recommendations.map((item: Recommondation) => (
           <>
-            <div className="mt-5 mb-10">
+            <div className="">
               <CardView cardStyle={`px-5 py-5 w-[510px]`}>
                 <div className={`absolute -top-10 right-10 h-16 w-16`}>
                   <img

@@ -25,7 +25,12 @@ function Drawer({ children, isOpen, setIsOpen }: DrawerProps) {
         }
       >
         <article className="relative flex h-full w-screen flex-col space-y-6 overflow-y-scroll p-8">
-          <header className="text-lg font-bold">Header</header>
+          <header
+            className={`cursor-pointer text-lg font-bold hover:text-white`}
+            onClick={() => setIsOpen(false)}
+          >
+            X
+          </header>
           <section className="py-52">{children}</section>
         </article>
       </section>
