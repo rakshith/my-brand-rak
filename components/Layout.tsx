@@ -1,9 +1,7 @@
 import React from 'react'
-import Center from './Center'
 import Sidebar from './Sidebar/Sidebar'
 import Head from 'next/head'
 import Header from './Header'
-import InfoSidebar from './Sidebar/InfoSidebar'
 
 interface LayoutProps {
   children: any
@@ -17,7 +15,7 @@ function Layout({ children }: LayoutProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex flex-row justify-between">
-        <div className="sidebar-container z-50 flex flex-col lg:w-1/4 2xl:w-1/3">
+        <div className="sidebar-container z-50 flex flex-col lg:w-1/4 2xl:w-1/5">
           <Sidebar direction="right" />
         </div>
 
@@ -25,7 +23,7 @@ function Layout({ children }: LayoutProps) {
           <Header />
           <div className="flex h-1/4 bg-cover-pic">{children}</div>
         </div>
-        <div className="sidebar-container flex flex-col lg:w-1/12 2xl:w-1/12">
+        <div className="sidebar-container flex flex-col lg:w-[150px] 2xl:w-[150px]">
           <Sidebar direction="left" />
         </div>
       </div>

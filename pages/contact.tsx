@@ -1,13 +1,14 @@
 import React from 'react'
+import Center from '../components/Center'
 import ContactInfo from '../components/contact/ContactInfo'
 import GetInTouch from '../components/contact/GetInTouch'
 
 function contact() {
   return (
-    <div className="flex w-full flex-col px-5">
+    <Center>
       <ContactInfo />
       <GetInTouch />
-    </div>
+    </Center>
   )
 }
 

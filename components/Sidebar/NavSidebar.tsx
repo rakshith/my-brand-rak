@@ -36,12 +36,12 @@ function NavSidebar({ screen }: NavSidebarProps) {
             <div
               className={`${
                 showNavSidebarState ? `lg:flex` : 'hidden lg:flex '
-              } sidebar-container h-full flex-col`}
+              } sidebar-container h-full w-full flex-col`}
             >
               <div
                 className=" hidden h-[70px] w-full
     cursor-pointer items-center justify-center
-    bg-[#24242E] hover:text-red-100 lg:flex lg:justify-start"
+    bg-[#24242E] hover:text-red-100 lg:flex"
               >
                 <Menu showClose={showNavSidebarState} />
               </div>
