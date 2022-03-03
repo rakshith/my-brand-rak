@@ -38,7 +38,9 @@ function InfoSidebar({ screen }: InfoSidebarProps) {
   }, [data])
 
   return (
-    <div className={`hidden w-full flex-col lg:flex`}>
+    <div
+      className={`hidden h-screen w-full flex-col overflow-y-scroll scrollbar-hide lg:flex`}
+    >
       <UserDetail
         name={authorDetail.name}
         profession={authorDetail.professional}
