@@ -11,7 +11,7 @@ import Recommendations from './Recommendations'
 function Center() {
   return (
     <>
-      <div className="w-full space-y-5 px-5">
+      <div className="z-10 h-screen w-full space-y-5 overflow-y-scroll px-5 scrollbar-hide">
         <Banner />
 
         <Achievements />

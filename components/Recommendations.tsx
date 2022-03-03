@@ -98,7 +98,7 @@ function Recommendations() {
         <CardAvatar />
         <CardAvatar />
       </div> */}
-      <div
+      {/* <div
         className="
         mt-5
         grid
@@ -132,51 +132,43 @@ function Recommendations() {
             </div>
           </>
         ))}
-      </div>
-      {/* <Card
-        title={recommendationsdf[0].name}
-        subtitle={recommendationsdf[0].designation as string}
-        content={recommendationsdf[0].recommendation}
-        avatar={recommendationsdf[0].avatar?.url}
-      /> */}
-      {/* <div
+      </div> */}
+      <div
         className="
       mt-10 
       flex
-      max-w-[500px]
       flex-row
-      overscroll-auto
+      space-x-5
+      overflow-x-scroll
+      overscroll-x-auto
       pt-10"
       >
-        <Card
-          title={recommendations[0].title}
-          subtitle={recommendations[0].subtitle}
-          content={recommendations[0].description}
-          avatar={recommendations[0].avatar}
-          ratings={recommendations[0].ratings}
-        />
-        <Card
-          title={recommendations[0].title}
-          subtitle={recommendations[0].subtitle}
-          content={recommendations[0].description}
-          avatar={recommendations[0].avatar}
-          ratings={recommendations[0].ratings}
-        />
-        <Card
-          title={recommendations[0].title}
-          subtitle={recommendations[0].subtitle}
-          content={recommendations[0].description}
-          avatar={recommendations[0].avatar}
-          ratings={recommendations[0].ratings}
-        />
-        <Card
-          title={recommendations[0].title}
-          subtitle={recommendations[0].subtitle}
-          content={recommendations[0].description}
-          avatar={recommendations[0].avatar}
-          ratings={recommendations[0].ratings}
-        />
-      </div> */}
+        {recommendations.map((item: Recommondation) => (
+          <>
+            <div className="mt-5 mb-10">
+              <CardView cardStyle={`px-5 py-5 w-[510px]`}>
+                <div className={`absolute -top-10 right-10 h-16 w-16`}>
+                  <img
+                    className="rounded-full border border-gray-100 shadow-lg"
+                    src={item.avatar?.url}
+                    alt="user image"
+                  />
+                </div>
+                <div className="mb-2 text-sm font-semibold">{item.name}</div>
+                <div className={`text-xs italic text-brand-text-gray`}>
+                  {item.designation as string}
+                </div>
+                <p className="mt-4 text-sm text-brand-text-gray">
+                  {item.recommendation}
+                </p>
+                <div className="mt-5">
+                  <Rating value={5} />
+                </div>
+              </CardView>
+            </div>
+          </>
+        ))}
+      </div>
     </div>
   )
 }

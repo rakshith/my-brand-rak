@@ -27,24 +27,7 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    plugin(function ({ addUtilities }) {
-      addUtilities({
-        '.scrollbar-hide': {
-          /* IE and Edge */
-          '-ms-overflow-style': 'none',
-
-          /* Firefox */
-          'scrollbar-width': 'none',
-
-          /* Safari and Chrome */
-          '&::-webkit-scrollbar': {
-            display: 'none',
-          },
-        },
-      })
-    }),
-  ],
+  plugins: [require('tailwind-scrollbar-hide')],
 }
 
 // rgb(30,30,40)

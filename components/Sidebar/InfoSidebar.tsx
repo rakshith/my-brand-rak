@@ -38,7 +38,7 @@ function InfoSidebar({ screen }: InfoSidebarProps) {
   }, [data])
 
   return (
-    <div className={`hidden w-72 flex-col lg:flex`}>
+    <div className={`hidden w-full flex-col lg:flex`}>
       <UserDetail
         name={authorDetail.name}
         profession={authorDetail.professional}
