@@ -5,13 +5,15 @@ import {
   RecommondationByAuthorQuery,
 } from '../graphql/generated/schema'
 import Card from './common/Card'
+import CardView from './common/CardView'
+import Rating from './common/Rating'
 
-// const recommendations = [
+// const recommendationsdf = [
 //   {
 //     id: 1,
-//     title: 'Recommendations 1',
-//     subtitle: 'subtitle1',
-//     description: 'Descriptions',
+//     name: 'Recommendations 1',
+//     designation: 'subtitle1',
+//     recommendation: 'Descriptions',
 //     avatar: 'https://randomuser.me/api/portraits/women/81.jpg',
 //     ratings: 5,
 //   },
@@ -107,15 +109,36 @@ function Recommendations() {
       >
         {recommendations.map((item: Recommondation) => (
           <>
-            <Card
-              title={item.name}
-              subtitle={item.designation as string}
-              content={item.recommendation}
-              avatar={item.avatar?.url}
-            />
+            <div className="mt-10">
+              <CardView cardStyle={`px-5 py-5 `}>
+                <div className={`absolute -top-10 right-10 h-16 w-16`}>
+                  <img
+                    className="rounded-full border border-gray-100 shadow-lg"
+                    src={item.avatar?.url}
+                    alt="user image"
+                  />
+                </div>
+                <div className="mb-2 text-sm font-semibold">{item.name}</div>
+                <div className={`text-xs italic text-brand-text-gray`}>
+                  {item.designation as string}
+                </div>
+                <p className="mt-4 text-sm text-brand-text-gray">
+                  {item.recommendation}
+                </p>
+                <div className="mt-5">
+                  <Rating value={5} />
+                </div>
+              </CardView>
+            </div>
           </>
         ))}
       </div>
+      {/* <Card
+        title={recommendationsdf[0].name}
+        subtitle={recommendationsdf[0].designation as string}
+        content={recommendationsdf[0].recommendation}
+        avatar={recommendationsdf[0].avatar?.url}
+      /> */}
       {/* <div
         className="
       mt-10 

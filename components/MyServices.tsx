@@ -5,42 +5,43 @@ import {
   Author,
   ServicesByAuthorQuery,
 } from '../graphql/generated/schema'
-import Card from './common/Card'
 
-const myServices = [
-  {
-    name: 'Example 1',
-    description: 'Description 1',
-    pathTo: '/contact',
-  },
-  {
-    name: 'Example 2',
-    description: 'Description 2',
-    pathTo: '/contact',
-  },
-  {
-    name: 'Example 3',
-    description: 'Description 3',
-    pathTo: '/contact',
-  },
-  {
-    name: 'Example 4',
-    description: 'Description 4',
-    pathTo: '/contact',
-  },
-  {
-    name: 'Example 7',
-    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-    quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-    nihil.`,
-    pathTo: '/contact',
-  },
-  {
-    name: 'Example 8',
-    description: 'Description 8',
-    pathTo: '/contact',
-  },
-]
+import CardView from './common/CardView'
+
+// const myServices = [
+//   {
+//     name: 'Example 1',
+//     description: 'Description 1',
+//     pathTo: '/contact',
+//   },
+//   {
+//     name: 'Example 2',
+//     description: 'Description 2',
+//     pathTo: '/contact',
+//   },
+//   {
+//     name: 'Example 3',
+//     description: 'Description 3',
+//     pathTo: '/contact',
+//   },
+//   {
+//     name: 'Example 4',
+//     description: 'Description 4',
+//     pathTo: '/contact',
+//   },
+//   {
+//     name: 'Example 7',
+//     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+//     quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+//     nihil.`,
+//     pathTo: '/contact',
+//   },
+//   {
+//     name: 'Example 8',
+//     description: 'Description 8',
+//     pathTo: '/contact',
+//   },
+// ]
 
 function MyServices() {
   const { loading, error, data } = useServicesByAuthorQuery({
@@ -70,11 +71,20 @@ function MyServices() {
       >
         {services.map((item) => (
           <>
-            <Card
-              title={item.name}
-              content={item.description as string}
-              btnLink={'/contact'}
-            />
+            <CardView cardStyle={`px-5 pb-5 `}>
+              <div className="flex flex-col items-start px-5 pt-5">
+                <div className="mb-2 text-sm font-semibold">{item.name}</div>
+                <p className="mt-4 text-sm text-brand-text-gray">
+                  {item.description as string}
+                </p>
+                <div
+                  className={`mt-5 cursor-pointer 
+            text-xs font-semibold text-brand-text-yellow`}
+                >
+                  ORDER NOW {'>'}
+                </div>
+              </div>
+            </CardView>
           </>
         ))}
       </div>
