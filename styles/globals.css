@@ -18,11 +18,11 @@
 }
 
 .sidebar-container {
-  @apply bg-[#20202A] text-[#8C8C8E];
+  @apply bg-[#20202A] text-white;
 }
 
 .brand-text-style {
-  @apply cursor-pointer text-sm font-semibold  hover:text-white;
+  @apply brand-text-gray cursor-pointer text-sm font-semibold hover:text-white;
 }
 
 .brand-button {
