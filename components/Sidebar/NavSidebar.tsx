@@ -24,7 +24,7 @@ function NavSidebar({ screen }: NavSidebarProps) {
       case 'sm':
         return (
           <>
-            <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Drawer isOpen={isOpen} setIsOpen={setIsOpen} direction="left">
               <DrawerItem />
             </Drawer>
           </>

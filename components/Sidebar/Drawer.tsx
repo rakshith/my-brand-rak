@@ -3,12 +3,13 @@ import { useRecoilState } from 'recoil'
 import { showNavSidebarAtom } from '../../atoms/navSidebarAtom'
 
 interface DrawerProps {
+  direction: string
   children: any
   isOpen: boolean
   setIsOpen: any
 }
 
-function Drawer({ children, isOpen, setIsOpen }: DrawerProps) {
+function Drawer({ direction, children, isOpen, setIsOpen }: DrawerProps) {
   return (
     <main
       className={
@@ -20,11 +21,19 @@ function Drawer({ children, isOpen, setIsOpen }: DrawerProps) {
     >
       <section
         className={
-          ' delay-400 sidebar-container absolute right-0 h-full w-screen max-w-xs transform shadow-xl transition-all duration-500 ease-in-out  ' +
-          (isOpen ? ' translate-x-0 ' : ' translate-x-full ')
+          ` delay-400 sidebar-container absolute ${
+            direction === 'right' ? 'top-0 left-0' : 'right-0'
+          }  h-full w-screen max-w-xs transform shadow-xl transition-all duration-500 ease-in-out  ` +
+          (isOpen
+            ? ' translate-x-0 '
+            : ` ${
+                direction === 'right'
+                  ? '-translate-x-full '
+                  : 'translate-x-full'
+              } `)
         }
       >
-        <article className="relative flex h-full w-screen flex-col space-y-6 overflow-y-scroll p-8">
+        <article className="relative flex h-full w-full flex-col space-y-6 overflow-y-scroll p-8">
           <header
             className={`cursor-pointer text-lg font-bold hover:text-white`}
             onClick={() => setIsOpen(false)}
