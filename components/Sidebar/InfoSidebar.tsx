@@ -50,7 +50,27 @@ function InfoSidebar({ screen }: InfoSidebarProps) {
         return (
           <>
             <Drawer isOpen={isOpen} setIsOpen={setIsOpen} direction="right">
-              <DrawerItem />
+              <div
+                className={`h-screen w-full flex-col overflow-y-scroll scrollbar-hide lg:flex`}
+              >
+                <UserDetail
+                  name={authorDetail.name}
+                  profession={authorDetail.professional}
+                  occupation={authorDetail.occupation}
+                  photoUrl={authorDetail.avatar?.url}
+                />
+                <div className="px-10 py-5">
+                  <ResidenceDetail
+                    city={residence?.city as string}
+                    nationality={residence?.nationality as string}
+                    age={authorDetail?.age as number}
+                  />
+                  <hr className="hr" />
+                  <Languages languages={languages} />
+                  <hr className="hr" />
+                  <SkillsDetail skills={skills} />
+                </div>
+              </div>
             </Drawer>
           </>
         )

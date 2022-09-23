@@ -33,14 +33,24 @@ function Drawer({ direction, children, isOpen, setIsOpen }: DrawerProps) {
               } `)
         }
       >
-        <article className="relative flex h-full w-full flex-col space-y-6 overflow-y-scroll p-8">
-          <header
-            className={`cursor-pointer text-lg font-bold hover:text-white`}
-            onClick={() => setIsOpen(false)}
-          >
-            X
-          </header>
-          <section className="py-52">{children}</section>
+        <article
+          className={`relative flex h-full w-full flex-col ${
+            direction === 'right' ? '' : 'space-y-6'
+          } overflow-y-scroll ${direction === 'right' ? '' : 'p-8'}`}
+        >
+          {direction === 'right' ? (
+            <></>
+          ) : (
+            <header
+              className={`cursor-pointer text-lg font-bold hover:text-white`}
+              onClick={() => setIsOpen(false)}
+            >
+              X
+            </header>
+          )}
+          <section className={`${direction === 'right' ? '' : 'py-52'}`}>
+            {children}
+          </section>
         </article>
       </section>
       <section
